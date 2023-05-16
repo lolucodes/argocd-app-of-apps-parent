@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: batch-publisher-perf
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ops360
+    name: in-cluster
+  project: perf
+  source:
+    path: uat-perf/perf/ops360/batch-publisher
+    repoURL: git@bitbucket.org:asset-control-acx/ops360alpha-k8s-aws.git
+    targetRevision: feature/argocd

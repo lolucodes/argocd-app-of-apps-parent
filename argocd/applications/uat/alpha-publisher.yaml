@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alpha-publisher-uat
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ops360
+    name: in-cluster
+  project: uat
+  source:
+    path: uat-perf/uat01/alpha/services/10.alpha-publisher
+    repoURL: git@bitbucket.org:asset-control-acx/ops360alpha-k8s-aws.git
+    targetRevision: feature/argocd
+    plugin:
+      name: kustomized-helm
+

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: acx-plus-deriver-perf
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ops360
+    name: in-cluster
+  project: perf
+  source:
+    path: uat-perf/perf/alpha/services/06.acx-plus/04.acx-plus-derived
+    repoURL: git@bitbucket.org:asset-control-acx/ops360alpha-k8s-aws.git
+    targetRevision: feature/argocd

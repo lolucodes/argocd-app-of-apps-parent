@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operations-board-ui-uat01
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ops360
+    name: in-cluster
+  project: uat
+  source:
+    path: uat-perf/uat01/ops360/operations-board-ui
+    repoURL: git@bitbucket.org:asset-control-acx/ops360alpha-k8s-aws.git
+    targetRevision: feature/argocd
+    plugin:
+      name: kustomized-helm
